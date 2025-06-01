@@ -1,0 +1,39 @@
+:root {
+    --primary-color: #2e1a47;
+    --blue-color: #4285f4;
+    --red-color: #db4437;
+    --yellow-color: #f4b400;
+    --green-color: #0f9d58;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 150px;
+    height: 250px;
+    border: 2px solid var(--primary-color);
+    padding: 0.5rem 0.3rem;
+    margin: 13px 10px;
+    position: relative;
+}
+
+.card-title {
+    font-weight: 400;
+    text-align: center;
+}
+
+.card-title .card-price {
+    font-weight: bold;
+}
+
+.image-container {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.image-container img {
+    width: 100%;
+    object-fit: cover;
+}

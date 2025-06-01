@@ -9,13 +9,13 @@ import cocaImg from '../Images/coca.png';
 
 export function getData() {
     return [
-        {title: "Pizza", price: 17.99, Image: {pizzaImg}},
-        {title: "Salad", price: 5.09, Image: {saladImg}},
-        {title: "Bottle of water", price: 2.32, Image: {waterImg}},
-        {title: "Ice cream", price: 17.99, Image: {icreamImg}},
-        {title: "Pizza", price: 17.99, Image: {icream1Img}},
-        {title: "Kebab", price: 15.83, Image: {kebabImg}},
-        {title: "Burger", price: 8.89, Image: {burgerImg}},
-        {title: "Bottle of Coke", price: 5.89, Image: {cocaImg}},
+        {id: 1, title: "Pizza", price: 17.99, image: pizzaImg},
+        {id: 2, title: "Salad", price: 5.09, image: saladImg},
+        {id: 3, title: "Bottle of water", price: 2.32, image: waterImg},
+        {id: 4, title: "Ice cream", price: 17.99, image: icreamImg},
+        {id: 5, title: "Pizza", price: 17.99, image: icream1Img},
+        {id: 6, title: "Kebab", price: 15.83, image: kebabImg},
+        {id: 7, title: "Burger", price: 8.89, image: burgerImg},
+        {id: 8, title: "Bottle of Coke", price: 5.89, image: cocaImg},
     ]
-}
+};
