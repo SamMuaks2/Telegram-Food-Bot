@@ -29,14 +29,11 @@ const Card = ({food}) => {
       </h4>
 
       <div className="btn-container">
-        <Button title={"+"} type={'add'} onClick={handleIncrement} />
+        <Button title={"+"} type={'add'} onClick={handleIncrement} className={count > 0 ? 'btn-small' : ''} />
 
-        {count !== 0 ? (
-          <Button title={"-"} type={'remove'} onClick={handleDecrement} />
-        ) : (
-          ""
-        )
-      }
+        {count !== 0 && (
+          <Button title={"-"} type={'remove'} onClick={handleDecrement} className='btn-small' />
+        )}
       </div>
 
 
