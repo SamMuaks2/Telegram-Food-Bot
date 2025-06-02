@@ -37,3 +37,16 @@
     width: 100%;
     object-fit: cover;
 }
+
+.btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.card-price {
+    text-align: center;
+    display: inline-block;
+}
+
+.card-badge {}

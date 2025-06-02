@@ -6,17 +6,17 @@ const Card = ({food}) => {
   const [count, setCount] = useState(0);
   const {title, image, price, id} = food;
 
-  const habdleIncrement = () => {
-    (setCount + 1)
+  const handleIncrement = () => {
+    setCount(prev => prev + 1);
   };
 
-  const habdleDecrement = () => {
-    (setCount - 1)
+  const handleDecrement = () => {
+    setCount(prev => (prev > 0 ? prev - 1 : 0));
   };
 
   return (
     <div className='card'>
-      <span className={`${count !== 0 ? 'card_badge' : 'card_badge--hidden'}`}>
+      <span className={`${count !== 0 ? 'card-badge' : 'card-badge--hidden'}`}>
         {count}
       </span>
 
@@ -29,10 +29,10 @@ const Card = ({food}) => {
       </h4>
 
       <div className="btn-container">
-        <Button title={"+"} type={'add'} onClick={habdleIncrement} />
+        <Button title={"+"} type={'add'} onClick={handleIncrement} />
 
         {count !== 0 ? (
-          <Button title={"-"} type={'remove'} onClick={habdleDecrement} />
+          <Button title={"-"} type={'remove'} onClick={handleDecrement} />
         ) : (
           ""
         )
