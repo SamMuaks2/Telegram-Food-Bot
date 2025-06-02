@@ -12,10 +12,11 @@
     justify-content: space-between;
     width: 150px;
     height: 250px;
-    border: 2px solid var(--primary-color);
+    border: 2px solid var(--yellow-color);
     padding: 0.5rem 0.3rem;
     margin: 13px 10px;
     position: relative;
+    border-radius: 12px;
 }
 
 .card-title {
@@ -49,4 +50,34 @@
     display: inline-block;
 }
 
-.card-badge {}
+.card-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 2px solid var(--yellow-color);
+    transform: translate(50%, -50%) scale(1);
+    transition: all 0.3s ease;
+    animation: scaleanimation 1s ease infinite;
+    opacity: 0.8;
+}
+
+.card-badge--hidden {
+   display: none;
+}
+
+@keyframes scaleanimation {
+    to {
+        transform: translate(50%, -50%) scale(1.05);
+        opacity: 1;
+    }
+}
