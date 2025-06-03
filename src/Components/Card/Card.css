@@ -6,6 +6,10 @@
     --green-color: #0f9d58;
 }
 
+.card-container {
+    margin: 2% 5% 2% 5%;
+}
+
 .card {
     display: flex;
     flex-direction: column;

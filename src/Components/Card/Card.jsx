@@ -2,20 +2,23 @@ import React, {useState} from 'react';
 import './Card.css';
 import Button from '../Button/Button';
 
-const Card = ({food}) => {
+const Card = ({food, addToCart, removeFromCart}) => {
   const [count, setCount] = useState(0);
   const {title, image, price, id} = food;
 
   const handleIncrement = () => {
     setCount(prev => prev + 1);
+    addToCart(food);
   };
 
   const handleDecrement = () => {
     setCount(prev => (prev > 0 ? prev - 1 : 0));
+    removeFromCart(food);
   };
 
   return (
-    <div className='card'>
+    <div className="card-container">
+      <div className='card'>
       <span className={`${count !== 0 ? 'card-badge' : 'card-badge--hidden'}`}>
         {count}
       </span>
@@ -37,6 +40,7 @@ const Card = ({food}) => {
       </div>
 
 
+    </div>
     </div>
   )
 }

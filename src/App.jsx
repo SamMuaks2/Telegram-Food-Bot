@@ -11,29 +11,60 @@ const App = () => {
 
   const [cartItems, setCartItems] = useState([]);
 
-  const addToCart = (food) => {
-    const exists = cartItems.find((x) => x.id === food.id)
+  // const addToCart = (food) => {
+  //   const exists = cartItems.find((x) => x.id === food.id)
 
-    if(exists) {
-      setCartItems(cartItems.map(x => {
-        x.id === food.id ? {...exists, quantity: exists.quantity + 1} : x;
-      }))
+  //   if(exists) {
+  //     setCartItems(cartItems.map(x => {
+  //       x.id === food.id ? {...exists, quantity: exists.quantity + 1} : x;
+  //     }))
+  //   } else {
+  //     setCartItems([...cartItems, {...food, quantity: 1} ])
+  //   }
+  // };
+
+  const addToCart = (food) => {
+    const exists = cartItems.find((x) => x.id === food.id);
+  
+    if (exists) {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === food.id ? { ...x, quantity: x.quantity + 1 } : x
+        )
+      );
     } else {
-      setCartItems([...cartItems, {...food, quantity: 1} ])
+      setCartItems([...cartItems, { ...food, quantity: 1 }]);
     }
   };
+  
+
+  // const removeFromCart = (food) => {
+  //   const exists = cartItems.find((x) => x.id === food.id)
+
+  //   if(exists.quantity === 1) {
+  //     setCartItems(cartItems.filter(x => x.id !== food.id))
+  //   } else {
+  //     setCartItems(cartItems.map(x => 
+  //       x.id === food.id ? {exists, quantity: exists.quantity -1} : x
+  //     ))
+  //   }
+  // };
+
 
   const removeFromCart = (food) => {
-    const exists = cartItems.find((x) => x.id === food.id)
-
-    if(exists.quantity === 1) {
-      setCartItems(cartItems.filter(x => x.id !== food.id))
+    const exists = cartItems.find((x) => x.id === food.id);
+  
+    if (exists.quantity === 1) {
+      setCartItems(cartItems.filter((x) => x.id !== food.id));
     } else {
-      setCartItems(cartItems.map(x => 
-        x.id === food.id ? {exists, quantity: exists.quantity -1} : x
-      ))
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === food.id ? { ...x, quantity: x.quantity - 1 } : x
+        )
+      );
     }
   };
+  
 
   return (
     <>
@@ -41,13 +72,16 @@ const App = () => {
 
       <Cart cartItems={cartItems} addToCart={addToCart} removeFromCart={removeFromCart} />
 
-      <Button title={'Add'} disable={false} type={'add'}/>
-      <Button title={'Remove'} disable={false} type={'remove'}/>
-      <Button title={'Checkout'} disable={false} type={'checkout'}/>
+      {/* <Button title={'Add'} disable={false} type={'add'}/>
+      <Button title={'Remove'} disable={false} type={'remove'}/> */}
+
+      <div className="checkout-button-container">
+        <Button title={'Checkout'} disable={false} type={'checkout'}/>
+      </div>
 
       <div className='cards-container'>
         {foods.map((food) => {
-          return <Card food={food} key={food.id} />
+          return <Card food={food} key={food.id} addToCart={addToCart} removeFromCart={removeFromCart} />
         })
         }
       </div>

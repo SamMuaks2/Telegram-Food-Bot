@@ -1,0 +1,6 @@
+.cart-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 2% 10% 2% 12%;
+}
