@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css';
 import Button from './Components/Button/Button';
 import Card from './Components/Card/Card';
@@ -11,18 +11,7 @@ const App = () => {
 
   const [cartItems, setCartItems] = useState([]);
 
-  // const addToCart = (food) => {
-  //   const exists = cartItems.find((x) => x.id === food.id)
-
-  //   if(exists) {
-  //     setCartItems(cartItems.map(x => {
-  //       x.id === food.id ? {...exists, quantity: exists.quantity + 1} : x;
-  //     }))
-  //   } else {
-  //     setCartItems([...cartItems, {...food, quantity: 1} ])
-  //   }
-  // };
-
+  
   const addToCart = (food) => {
     const exists = cartItems.find((x) => x.id === food.id);
   
@@ -37,20 +26,7 @@ const App = () => {
     }
   };
   
-
-  // const removeFromCart = (food) => {
-  //   const exists = cartItems.find((x) => x.id === food.id)
-
-  //   if(exists.quantity === 1) {
-  //     setCartItems(cartItems.filter(x => x.id !== food.id))
-  //   } else {
-  //     setCartItems(cartItems.map(x => 
-  //       x.id === food.id ? {exists, quantity: exists.quantity -1} : x
-  //     ))
-  //   }
-  // };
-
-
+ 
   const removeFromCart = (food) => {
     const exists = cartItems.find((x) => x.id === food.id);
   
