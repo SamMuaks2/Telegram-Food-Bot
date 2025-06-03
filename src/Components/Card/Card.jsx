@@ -28,7 +28,7 @@ const Card = ({food, addToCart, removeFromCart}) => {
       </div>
       
       <h4 className="card-title">
-        {title} . <span className='card-price'>{price}</span>
+        {title} . <span className='card-price'>$ {price}</span>
       </h4>
 
       <div className="btn-container">
