@@ -7,9 +7,15 @@ import Cart from './Components/Cart/Cart';
 
 const foods = getData();
 
+const teleApp = window.Telegram.WebApp;
+
 const App = () => {
 
   const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    teleApp.ready();
+  })
 
   
   const addToCart = (food) => {
@@ -40,13 +46,18 @@ const App = () => {
       );
     }
   };
+
+  const onCheckout = () => {
+    teleApp.MainButton.text = 'Pay now 😁' 
+    teleApp.MainButton.show()
+  }
   
 
   return (
     <>
       <h1>Food order app</h1>
 
-      <Cart cartItems={cartItems} addToCart={addToCart} removeFromCart={removeFromCart} />
+      <Cart cartItems={cartItems} addToCart={addToCart} removeFromCart={removeFromCart} onCheckout={onCheckout} />
 
       {/* <Button title={'Add'} disable={false} type={'add'}/>
       <Button title={'Remove'} disable={false} type={'remove'}/> */}
