@@ -46,8 +46,21 @@ const App = () => {
       );
     }
   };
+  
 
-  const onCheckout = () => {
+  const onCheckout = async () => {
+    const res = await fetch('https://your-backend.com/api/pay/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({ cartItems })
+    });
+  
+    const { id } = await res.json();
+    window.location.href = `https://checkout.stripe.com/pay/${id}`;
+
     teleApp.MainButton.text = 'Pay now 😁' 
     teleApp.MainButton.show()
   }
