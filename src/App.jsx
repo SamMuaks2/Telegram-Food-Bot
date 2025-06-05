@@ -59,13 +59,6 @@ const App = () => {
 
       <Cart cartItems={cartItems} addToCart={addToCart} removeFromCart={removeFromCart} onCheckout={onCheckout} />
 
-      {/* <Button title={'Add'} disable={false} type={'add'}/>
-      <Button title={'Remove'} disable={false} type={'remove'}/> */}
-
-      <div className="checkout-button-container">
-        <Button title={'Checkout'} disable={false} type={'checkout'}/>
-      </div>
-
       <div className='cards-container'>
         {foods.map((food) => {
           return <Card food={food} key={food.id} addToCart={addToCart} removeFromCart={removeFromCart} />
