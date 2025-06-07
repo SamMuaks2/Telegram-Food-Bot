@@ -10,16 +10,25 @@ const Card = ({food, addToCart, removeFromCart, quantity}) => {
   const backendURL = 'https://telegram-food-bot-backend.vercel.app';
 
   const getValidImage = (img) => {
+  if (!img) return 'default-image.jpg';
   if (typeof img === 'string') return img;
-  if (img && typeof img === 'object') {
-    return Object.values(img).join('');
-  }
-    return 'default-image.jpg';
-  };
+  if (img.url) return img.url;
+  return 'default-image.jpg';
+};
 
-  const image = images && images.length > 0
-    ? `${backendURL}/uploads/${getValidImage(images[0])}`
-    : 'default-image.jpg';
+const image = getValidImage(images && images.length > 0 ? images[0] : null);
+
+  // const getValidImage = (img) => {
+  // if (typeof img === 'string') return img;
+  // if (img && typeof img === 'object') {
+  //   return Object.values(img).join('');
+  // }
+  //   return 'default-image.jpg';
+  // };
+
+  // const image = images && images.length > 0
+  //   ? `${backendURL}/uploads/${getValidImage(images[0])}`
+  //   : 'default-image.jpg';
 
 
   const handleIncrement = () => {
