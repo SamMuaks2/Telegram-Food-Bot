@@ -6,7 +6,13 @@ const Card = ({food, addToCart, removeFromCart, quantity}) => {
   const count = quantity || 0;
   
   const { name, images, price, _id, description, category } = food;
-  const image = images && images.length > 0 ? images[0] : 'default-image.jpg';
+  // const image = images && images.length > 0 ? images[0] : 'default-image.jpg';
+  const backendURL = 'https://telegram-food-bot-backend.vercel.app';
+
+  const image = images && images.length > 0
+    ? `${backendURL}/uploads/${images[0]}`
+    : 'default-image.jpg';
+
 
   const handleIncrement = () => {
     addToCart(food);
