@@ -4,7 +4,7 @@ import Button from '../Button/Button';
 
 const Card = ({food, addToCart, removeFromCart}) => {
   const [count, setCount] = useState(0);
-  const {title, image, price, id} = food;
+  const {title, image, price, _id} = food;
 
   const handleIncrement = () => {
     setCount(prev => prev + 1);
@@ -24,7 +24,7 @@ const Card = ({food, addToCart, removeFromCart}) => {
       </span>
 
       <div className='image-container'>
-        <img src={image} alt={title} id={id} />
+        <img src={image} alt={title} id={_id} />
       </div>
       
       <h4 className="card-title">
