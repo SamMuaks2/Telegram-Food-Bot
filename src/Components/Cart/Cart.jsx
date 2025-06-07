@@ -11,7 +11,7 @@ const Cart = ({cartItems, addToCart, removeFromCart, onCheckout}) => {
 
       <br />
 
-      <span className=''>Total price: ${totalPrice.toFixed(2)}</span>
+      <span className=''>Total price: ₦{totalPrice.toFixed(2)}</span>
 
       <Button 
         title={`${cartItems.length === 0 ? 'Order' : 'Checkout'}`} 
