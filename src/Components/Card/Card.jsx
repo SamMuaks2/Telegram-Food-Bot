@@ -9,8 +9,16 @@ const Card = ({food, addToCart, removeFromCart, quantity}) => {
   // const image = images && images.length > 0 ? images[0] : 'default-image.jpg';
   const backendURL = 'https://telegram-food-bot-backend.vercel.app';
 
+  const getValidImage = (img) => {
+  if (typeof img === 'string') return img;
+  if (img && typeof img === 'object') {
+    return Object.values(img).join('');
+  }
+    return 'default-image.jpg';
+  };
+
   const image = images && images.length > 0
-    ? `${backendURL}/uploads/${images[0]}`
+    ? `${backendURL}/uploads/${getValidImage(images[0])}`
     : 'default-image.jpg';
 
 
