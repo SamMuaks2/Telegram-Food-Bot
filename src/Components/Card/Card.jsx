@@ -5,8 +5,7 @@ import Button from '../Button/Button';
 const Card = ({food, addToCart, removeFromCart, quantity}) => {
   const count = quantity || 0;
   
-  // const [count, setCount] = useState(0);
-  const {title, image, price, _id} = food;
+  const { name, image, price, _id, description, category } = food;
 
   const handleIncrement = () => {
     addToCart(food);
@@ -34,12 +33,16 @@ const Card = ({food, addToCart, removeFromCart, quantity}) => {
       </span>
 
       <div className='image-container'>
-        <img src={image} alt={title} id={_id} />
+        <img src={image} alt={name} id={_id} />
       </div>
       
       <h4 className="card-title">
-        {title} . <span className='card-price'>₦ {price}</span>
+        {name} . <span className='card-price'>₦ {price}</span>
       </h4>
+
+      {description && <p className="card-description">{description}</p>}
+
+      {category && <p className="card-category">Category: {category}</p>}
 
       <div className="btn-container">
         <Button title={"+"} type={'add'} onClick={handleIncrement} className={count > 0 ? 'btn-small' : ''} />
