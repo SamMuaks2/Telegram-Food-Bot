@@ -1,20 +1,30 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './Card.css';
 import Button from '../Button/Button';
 
-const Card = ({food, addToCart, removeFromCart}) => {
-  const [count, setCount] = useState(0);
+const Card = ({food, addToCart, removeFromCart, quantity}) => {
+  const count = quantity || 0;
+  
+  // const [count, setCount] = useState(0);
   const {title, image, price, _id} = food;
 
   const handleIncrement = () => {
-    setCount(prev => prev + 1);
     addToCart(food);
   };
 
   const handleDecrement = () => {
-    setCount(prev => (prev > 0 ? prev - 1 : 0));
-    removeFromCart(food);
+    if (count > 0) removeFromCart(food);
   };
+
+  // const handleIncrement = () => {
+  //   setCount(prev => prev + 1);
+  //   addToCart(food);
+  // };
+
+  // const handleDecrement = () => {
+  //   setCount(prev => (prev > 0 ? prev - 1 : 0));
+  //   removeFromCart(food);
+  // };
 
   return (
     <div className="card-container">

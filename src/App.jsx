@@ -43,10 +43,10 @@ const App = () => {
   
  
   const removeFromCart = (food) => {
-    const exists = cartItems.find((x) => x._id === food.id);
+    const exists = cartItems.find((x) => x._id === food._id);
   
     if (exists.quantity === 1) {
-      setCartItems(cartItems.filter((x) => x._id !== food.id));
+      setCartItems(cartItems.filter((x) => x._id !== food._id));
     } else {
       setCartItems(
         cartItems.map((x) =>
@@ -83,7 +83,14 @@ const App = () => {
 
       <div className='cards-container'>
         {foods.map((food) => {
-          return <Card food={food} key={food._id} addToCart={addToCart} removeFromCart={removeFromCart} />
+          return <Card 
+                    food={food} 
+                    key={food._id} 
+                    addToCart={addToCart} 
+                    removeFromCart={removeFromCart} 
+                    quantity={cartItems.find(item => item._id === food._id)?.quantity || 0} 
+                  />
+                  // <Card food={food} key={food._id} addToCart={addToCart} removeFromCart={removeFromCart} />
         })
         }
       </div>
