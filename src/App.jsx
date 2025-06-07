@@ -55,24 +55,67 @@ const App = () => {
       );
     }
   };
+
+  const onCheckout = () => {
+  const totalAmount = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
+
+  const user = window.Telegram.WebApp.initDataUnsafe?.user;
+  const email = `${user?.id}@telegram.fake`;
+
+  const handler = window.PaystackPop.setup({
+    key: 'pk_live_42c8691a68c08b1756212148f236bfcb29848d18',
+    email: email,
+    amount: totalAmount * 100,
+    currency: 'NGN',
+    ref: '' + Math.floor(Math.random() * 1000000000 + 1),
+    metadata: {
+      cart: cartItems,
+      telegramUser: user,
+    },
+
+    callback: function (response) {
+      alert(`Payment successful! Reference: ${response.reference}`);
+      fetch('https://telegram-food-bot-backend.vercel.app/api/verify-paystack', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reference: response.reference }),
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log('Verification response:', data);
+          })
+          .catch(err => {
+            console.error('Verification error:', err);
+          });
+        },
+        onClose: function () {
+          alert('Payment window closed.');
+        },
+      });
+    
+
+  handler.openIframe();
+  window.Telegram.WebApp.MainButton.text = 'Complete payment on Paystack';
+  window.Telegram.WebApp.MainButton.show();
+};
   
 
-  const onCheckout = async () => {
-    const res = await fetch('https://telegram-food-bot-backend.vercel.app/api/pay/create-checkout-session', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-      },
-      body: JSON.stringify({ cartItems })
-    });
+  // const onCheckout = async () => {
+  //   const res = await fetch('https://telegram-food-bot-backend.vercel.app/api/pay/create-checkout-session', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: `Bearer ${localStorage.getItem('token')}`
+  //     },
+  //     body: JSON.stringify({ cartItems })
+  //   });
 
-    const { id } = await res.json();
-    window.location.href = `https://checkout.stripe.com/pay/${id}`;
+  //   const { id } = await res.json();
+  //   window.location.href = `https://checkout.stripe.com/pay/${id}`;
 
-    teleApp.MainButton.text = 'Pay now 😁' 
-    teleApp.MainButton.show()
-  }
+  //   teleApp.MainButton.text = 'Pay now 😁' 
+  //   teleApp.MainButton.show()
+  // }
   
 
   return (
