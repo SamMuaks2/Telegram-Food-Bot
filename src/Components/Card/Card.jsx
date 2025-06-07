@@ -5,7 +5,8 @@ import Button from '../Button/Button';
 const Card = ({food, addToCart, removeFromCart, quantity}) => {
   const count = quantity || 0;
   
-  const { name, image, price, _id, description, category } = food;
+  const { name, images, price, _id, description, category } = food;
+  const image = images && images.length > 0 ? images[0] : 'default-image.jpg';
 
   const handleIncrement = () => {
     addToCart(food);
@@ -15,16 +16,7 @@ const Card = ({food, addToCart, removeFromCart, quantity}) => {
     if (count > 0) removeFromCart(food);
   };
 
-  // const handleIncrement = () => {
-  //   setCount(prev => prev + 1);
-  //   addToCart(food);
-  // };
-
-  // const handleDecrement = () => {
-  //   setCount(prev => (prev > 0 ? prev - 1 : 0));
-  //   removeFromCart(food);
-  // };
-
+  
   return (
     <div className="card-container">
       <div className='card'>
