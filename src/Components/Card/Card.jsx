@@ -7,7 +7,7 @@ const Card = ({food, addToCart, removeFromCart, quantity}) => {
   
   const { name, images, price, _id, description, category } = food;
   // const image = images && images.length > 0 ? images[0] : 'default-image.jpg';
-  const backendURL = 'https://telegram-food-bot-backend.vercel.app';
+  // const backendURL = 'https://telegram-food-bot-backend.vercel.app';
 
   const getValidImage = (img) => {
   if (!img) return 'default-image.jpg';
@@ -48,7 +48,7 @@ const image = getValidImage(images && images.length > 0 ? images[0] : null);
       </span>
 
       <div className='image-container'>
-        <img src={image} alt={name} id={_id} />
+        <img src={image} alt={name} id={_id} onError={(e) => e.currentTarget.src = 'default-image.jpg'} />
       </div>
       
       <h4 className="card-title">
