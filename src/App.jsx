@@ -13,6 +13,7 @@ const App = () => {
 
   const [foods, setFoods] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+  const [email, setEmail] = useState('');
 
 
   useEffect(() => {
@@ -57,10 +58,15 @@ const App = () => {
   };
 
   const onCheckout = () => {
+    if (!email) {
+      alert('Please enter your email before checkout.');
+      return;
+    }
+
   const totalAmount = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
 
-  const user = window.Telegram.WebApp.initDataUnsafe?.user;
-  const email = `${user?.id}@telegram.fake`;
+  const user = teleApp.initDataUnsafe?.user;
+  // const user = window.Telegram.WebApp.initDataUnsafe?.user;
 
   const handler = window.PaystackPop.setup({
     key: 'pk_live_42c8691a68c08b1756212148f236bfcb29848d18',
@@ -70,7 +76,7 @@ const App = () => {
     ref: '' + Math.floor(Math.random() * 1000000000 + 1),
     metadata: {
       cart: cartItems,
-      telegramUser: user,
+      telegramUser: {...user, email},
     },
 
     callback: function (response) {
@@ -98,29 +104,22 @@ const App = () => {
   window.Telegram.WebApp.MainButton.text = 'Complete payment on Paystack';
   window.Telegram.WebApp.MainButton.show();
 };
-  
-
-  // const onCheckout = async () => {
-  //   const res = await fetch('https://telegram-food-bot-backend.vercel.app/api/pay/create-checkout-session', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: `Bearer ${localStorage.getItem('token')}`
-  //     },
-  //     body: JSON.stringify({ cartItems })
-  //   });
-
-  //   const { id } = await res.json();
-  //   window.location.href = `https://checkout.stripe.com/pay/${id}`;
-
-  //   teleApp.MainButton.text = 'Pay now 😁' 
-  //   teleApp.MainButton.show()
-  // }
-  
+    
 
   return (
     <>
       <h1>Food order app</h1>
+
+      {/* ✅ Email Input Field */}
+      <div style={{ marginBottom: '20px' }}>
+        <input
+          type="email"
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={{ padding: '10px', width: '250px', fontSize: '16px' }}
+        />
+      </div>
 
       <Cart cartItems={cartItems} addToCart={addToCart} removeFromCart={removeFromCart} onCheckout={onCheckout} />
 
@@ -133,7 +132,6 @@ const App = () => {
                     removeFromCart={removeFromCart} 
                     quantity={cartItems.find(item => item._id === food._id)?.quantity || 0} 
                   />
-                  // <Card food={food} key={food._id} addToCart={addToCart} removeFromCart={removeFromCart} />
         })
         }
       </div>
