@@ -15,6 +15,12 @@ h1 {
   text-align: center;
 }
 
+h4 {
+  color: #fff;
+  text-align: left;
+  margin-left: 5%;
+}
+
 .checkout-button-container {
   display: flex;
   justify-content: end;

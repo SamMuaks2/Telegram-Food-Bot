@@ -109,6 +109,8 @@ const App = () => {
   return (
     <>
       <h1>Food order app</h1>
+      
+      <h4>Insert email to complete order</h4>
 
       {/* ✅ Email Input Field */}
       <div style={{ marginBottom: '20px' }}>
@@ -117,7 +119,7 @@ const App = () => {
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          style={{ padding: '10px', width: '250px', fontSize: '16px' }}
+          style={{ marginLeft: '5%', padding: '10px', width: '250px', fontSize: '16px' }}
         />
       </div>
 
